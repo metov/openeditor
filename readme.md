@@ -2,6 +2,8 @@
 Edit files with your `$EDITOR`, like git commit does.
 
 ## Usage
+Install with: `pip install openeditor`
+
 ```
 # Let user edit file
 s = openeditor.edit_file("path/to/my/file.txt")
