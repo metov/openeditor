@@ -3,7 +3,7 @@
 import tempfile
 from pathlib import Path
 
-from lib import edit
+from lib import edit, write_file
 
 DEFAULT_TEMPFILE = "tempfile"
 
@@ -31,14 +31,10 @@ def edit_temp(contents="", name=""):
     :return: Contents of the file when the editor is closed.
     """
 
-    # Create a temp file with requested name, if any
+    # Create a temp file, ensure it has requested name and contents
     td = tempfile.TemporaryDirectory()
     tfpath = Path(td.name) / (name or DEFAULT_TEMPFILE)
-
-    # Populate contents if needed
-    if contents:
-        with tfpath.open("w") as f:
-            f.write(contents)
+    write_file(tfpath, contents)
 
     # Edit interactively
     return edit(tfpath)
