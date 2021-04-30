@@ -31,7 +31,7 @@ def edit_temp(contents="", name=""):
 
     # Create a temp file with requested name, if any
     td = tempfile.TemporaryDirectory()
-    tfpath = Path(td.name) / name or "tempfile"
+    tfpath = Path(td.name) / (name or "tempfile")
 
     # Populate contents if needed
     if contents:
