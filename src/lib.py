@@ -37,3 +37,10 @@ def editor() -> str:
             "Both $VISUAL and $EDITOR are unset, could not pick "
             "an appropriate editor."
         )
+
+
+def write_file(path, contents=""):
+    """Create a file. If contents are given, they will be written to it."""
+    with open(path, 'w') as f:
+        if contents:
+            f.write(contents)
