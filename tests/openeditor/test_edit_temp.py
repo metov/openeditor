@@ -29,3 +29,13 @@ def test_default_name_on_empty_name(monkeypatch):
     exp_args = str(Path(MockDir.name) / openeditor.DEFAULT_TEMPFILE)
     obs_args = str(fake_edit.last_arg)
     assert exp_args == obs_args
+
+
+def test_create_file_on_empty_contents(monkeypatch):
+    # Don't actually create a temp dir
+    monkeypatch.setattr(tempfile, "TemporaryDirectory", MockDir)
+    fake_open = mock_open()
+    monkeypatch.setattr(openeditor, "edit", lambda fn: None)
+
+    openeditor.edit_temp(contents="")
+    fake_open.assert_called_once()
