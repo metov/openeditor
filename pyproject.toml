@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openeditor"
-version = "0.1"
+version = "0.2"
 description = "Edit files with your $EDITOR, like git commit does."
 authors = ["Azat Akhmetov"]
 readme = "readme.md"
