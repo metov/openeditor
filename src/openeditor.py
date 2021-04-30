@@ -5,6 +5,8 @@ from pathlib import Path
 
 from lib import edit
 
+DEFAULT_TEMPFILE = "tempfile"
+
 
 def edit_file(filepath):
     """
@@ -31,7 +33,7 @@ def edit_temp(contents="", name=""):
 
     # Create a temp file with requested name, if any
     td = tempfile.TemporaryDirectory()
-    tfpath = Path(td.name) / (name or "tempfile")
+    tfpath = Path(td.name) / (name or DEFAULT_TEMPFILE)
 
     # Populate contents if needed
     if contents:
