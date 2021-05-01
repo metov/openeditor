@@ -3,7 +3,8 @@
 import tempfile
 from pathlib import Path
 
-from lib import edit, write_file
+from .lib import edit, write_file
+from openeditor import edit
 
 DEFAULT_TEMPFILE = "tempfile"
 
