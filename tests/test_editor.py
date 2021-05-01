@@ -1,4 +1,4 @@
-import lib
+from openeditor import lib
 import pytest
 
 MOCK_VISUAL = "some_visual"
@@ -12,7 +12,10 @@ def mock_set_visual(monkeypatch):
 
 @pytest.fixture
 def mock_unset_visual(monkeypatch):
-    monkeypatch.delenv("VISUAL")
+    try:
+        monkeypatch.delenv("VISUAL")
+    except KeyError:
+        pass
 
 
 @pytest.fixture
@@ -22,7 +25,10 @@ def mock_set_editor(monkeypatch):
 
 @pytest.fixture
 def mock_unset_editor(monkeypatch):
-    monkeypatch.delenv("EDITOR")
+    try:
+        monkeypatch.delenv("EDITOR")
+    except KeyError:
+        pass
 
 
 def test_both_set(mock_set_visual, mock_set_editor):
