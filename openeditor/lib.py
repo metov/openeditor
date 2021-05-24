@@ -2,6 +2,7 @@
 
 import os
 import subprocess
+import shlex
 
 
 class EditorError(RuntimeError):
@@ -17,7 +18,8 @@ def edit(filepath):
     :return: Contents of the file.
     """
 
-    subprocess.call([editor(), filepath], close_fds=True)
+    parts = shlex.split(editor(), posix=True) + [filepath]
+    subprocess.call(parts, close_fds=True)
 
     with open(filepath) as f:
         return f.read()
