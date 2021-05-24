@@ -2,6 +2,7 @@
 
 import os
 import subprocess
+import shlex
 
 
 class EditorError(RuntimeError):
@@ -13,11 +14,15 @@ class EditorError(RuntimeError):
 def edit(filepath):
     """Open the given file in an editor for the user to edit.
 
-    :param filepath: Path to the file.
-    :return: Contents of the file.
-    """
+    Assumptions:
+    1. The editor command is not too complex for shlex to handle.
+    2. The path of the file to be edited is the final argument.
 
-    subprocess.call([editor(), filepath], close_fds=True)
+    :param filepath: Path to the file.
+    :return: Contents of the file."""
+
+    parts = shlex.split(editor(), posix=True) + [filepath]
+    subprocess.call(parts, close_fds=True)
 
     with open(filepath) as f:
         return f.read()
